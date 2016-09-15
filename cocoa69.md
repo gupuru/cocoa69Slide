@@ -4,11 +4,15 @@
 
 ---
 
-# [fit] と、その前に...
+# About me
+
+新見 晃平
+
+**普段は、株式会社セフリで社畜してます!**
 
 ---
 
-# うちの社長です！
+# [fit] どんな企業かと言うと…社長が犬です！
 
 ![inline](img/kaizyuu.jpg)
 
@@ -18,7 +22,7 @@
 
 **新見 晃平**
 
-普段は、福岡にある株式会社セフリで[YAMAP](https://yamap.co.jp/)のAndroidアプリを作っているiOSエンジニアです。
+福岡にある株式会社セフリで、[YAMAP](https://yamap.co.jp/)のAndroidアプリを作っているiOSエンジニアです。
 最近は、Docker, TensorFlow, Angular 2などやっていてiOS全然できてない（泣）
 
 - Twitter: @gupuru
@@ -32,7 +36,7 @@
 
 ---
 
-# 今日のお話
+# おまけのお話
 
 - SVGって何？
 - iOSのSVG
@@ -108,22 +112,19 @@
 
 ---
 
-### SVGは、なんで拡大縮小しても荒くならない？？
+### SVGは、なんで拡大縮小しても荒くならないの？？
 
-点の座標位置や点同士を結ぶ線を計算し、画像の拡大や縮小も画質を演算して表示しているから。
-ちなみに、ベクターデータが最も利用されているは、フォント（アウトラインフォント）だそうです。
-
-※詳しくは、ググッてｗ
+- 点の座標位置や点同士を結ぶ線を計算し、画像の拡大や縮小も画質を演算して表示しているから。
+- ちなみに、ベクターデータが最も利用されているは、フォント（アウトラインフォント）だそうです。
+- 詳しくは、**ググッてｗ**
 
 ---
 
-拡大縮小しても荒くならないので...
+## 拡大縮小しても荒くならないので...
 
-**svgの1ファイルだけ用意すれば、解像度に応じた画像を用意する必要がなくなります。**
-
-今後、さらに解像度があがり@4x, xxxxxhdpiなどの対応が必要になった時も。新しく画像を用意しないくていい!!
-
-**アプリの容量も減らせる(^O^)／**
+- svgの1ファイルだけ用意すれば、**解像度に応じた画像を用意する必要がない！**
+- 今後、さらに解像度があがり@4x, xxxxxhdpiなどの対応が必要になった時も、**新しく画像を用意しないくていい!!**
+- アプリの容量も減らせる( *• ̀ω•́ )b
 
 ---
 
@@ -139,8 +140,10 @@
 
 ---
 
+# [fit] iOSでは、この辺を使うとSVGが使えます(･ω･)b
+
 - ライブラリ(SVGKit, SwiftSVG)
-- ツール(PaintCode)
+- アプリ(PaintCode)
 
 ---
 
@@ -148,32 +151,36 @@
 
 https://github.com/SVGKit/SVGKit
 
+CocoaPodsで追加
+
 ```
   pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '2.x'
 ```
 
 ---
 
-Resources作って、そこにsvgをいれて
+# [fit] Resources作って、そこにsvgをいれてねー
 
-![inline fit](img/ios_6.png)
+![inline](img/ios_6.png)
 
 ---
 
+# [fit] あとは、こんな感じにやればOK
+
 ```swift
-  @IBOutlet weak var svgAndroidImageView: UIImageView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let svgImage = SVGKImage(named: "android")
-        svgImage?.size = svgAndroidImageView.bounds.size
-        svgAndroidImageView.image = svgImage?.uiImage
-        
-    }
+@IBOutlet weak var svgAndroidImageView: UIImageView!
+
+override func viewDidLoad() {
+	super.viewDidLoad()
+	
+	let svgImage = SVGKImage(named: "android")
+	svgImage?.size = svgAndroidImageView.bounds.size
+	svgAndroidImageView.image = svgImage?.uiImage
+	
+}
 ```
 
-![inline fit](img/ios_7.png)
+![right fit](img/ios_7.png)
 
 ---
 
@@ -185,29 +192,33 @@ Resources作って、そこにsvgをいれて
 
 ---
 
-![inline fit](img/ios_1.png)
+![fit](img/ios_1.png)
 
 ---
 
-**Export**で、swiftファイル書き出して、プロジェクトに入れます。
+# [fit] Exportで、swiftファイル書き出して、プロジェクトに入れます。
 
 ![inline fit](img/ios_2.png)
 
 ---
 
-swift3.0には未対応なので、エラーがでるので、修正してね
+# [fit] いろいろエラーがでるので、修正してね(swift3.0未対応のため)
 
 ![inline fit](img/ios_3.png)
 
 ---
 
+# [fit] コードで指定する場合は、こんな感じです。
+
 ```swift
 	hogehoge.image = AndroidStyleKit.imageOfAndroid
 ```
 
-![inline fit](img/ios_4.png)
+![right fit](img/ios_4.png)
 
 ---
+
+# [fit] storyboard上でやる場合は、こんな感じです。
 
 ```swift
 import UIKit
@@ -220,7 +231,7 @@ class AndroidView: UIView {
 }
 ```
 
-![inline fit](img/ios_5.png)
+![right fit](img/ios_5.png)
 
 ---
 
@@ -228,7 +239,7 @@ class AndroidView: UIView {
 
 ---
 
-gradleに、これを入れてください。
+# gradleに、これを入れてください。
 
 
 ```
@@ -241,38 +252,38 @@ defaultConfig {
 
 ---
 
-そのままsvgファイルは使えないの、`<vector>`に変換する必要があります。
+svgファイルはそのままでは使えないので`<vector>`に変換する必要があります。
 この辺は、Android Studioの**Vector Asset**を使えば、簡単にできます！
 
 ![inline fit](img/android_studio_1.png)
 
 ---
 
-`Local...`を選んでもらって...
+# `Local...`を選んでもらって...
 
 ![inline fit](img/android_studio_2.png)
 
 ---
 
-ちゃんと読み込めると、こんな感じにプレビューが表示されます。
+# ちゃんと読み込めると、こんな感じにプレビューが表示されます。
 
 ![inline fill fit](img/android_studio_3.png)
 
 ---
 
-すると、こんな感じに変換してくれます。
+# そして、こんな感じに変換してくれます。
 
 ![inline fill fit](img/android_studio_4.png)
 
 ---
 
-あ！ちなみに、**Vector Asset**には、こんな感じのアイコンも用意してくれているので、こっち使うのもアリ！
+あ！ちなみに、**Vector Asset**には、こんな感じのアイコンも用意してくれているので、こっちを使うのもアリ！
 
 ![inline fill fit](img/android_studio_5.png)
 
 ---
 
-srcCompatになっていることに注意！
+# [fit] svgを表示するにはsrcCompatを使います。
 
 ```
  <ImageView
@@ -281,9 +292,7 @@ srcCompatになっていることに注意！
         app:srcCompat="@drawable/hogehoge"/>
 ```
 
----
-
-![inline fill fit](img/android_sc.png)
+![right fit](img/android_sc.png)
 
 ---
 
@@ -291,7 +300,15 @@ srcCompatになっていることに注意！
 
 ---
 
-# SVGはAndroidのほうがやりやすいぞ!
+# SVGのやりやすさはAndroidの方が上だけど...
+
+---
+
+# [fit] iPhoneも負けてないぞ！
+
+---
+
+# でも、Windowsは完全に負けてます（笑）
 
 ---
 
