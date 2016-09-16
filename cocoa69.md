@@ -235,6 +235,26 @@ class AndroidView: UIView {
 
 ---
 
+# SVG　アニメーションっぽいこと
+
+```swift
+
+@IBOutlet weak var leftOldWindowsView: OldWindowsView!
+
+UIView.animate(withDuration: 1.0, delay: 0, options: .curveLinear, animations: {
+            self.leftOldWindowsView!.transform =
+                self.leftOldWindowsView!.transform.rotated(by: CGFloat(M_PI_2))
+            }, completion: { finished in
+                self.rotateLeftOldWindowsView()
+        })
+```
+
+
+![right fit](img/ios_animation.gif)
+
+
+---
+
 # [fit] AndroidのSVG対応
 
 ---
