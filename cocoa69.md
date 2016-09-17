@@ -6,27 +6,19 @@
 
 # About me
 
-新見 晃平
-
-**普段は、株式会社セフリで社畜してます!**
-
----
-
-# [fit] どんな企業かと言うと…社長が犬です！
-
-![inline](img/kaizyuu.jpg)
-
----
-
-# About me
-
 **新見 晃平**
 
-福岡にある株式会社セフリで、[YAMAP](https://yamap.co.jp/)のAndroidアプリを作っているiOSエンジニアです。
+福岡にある株式会社セフリという会社で、[YAMAP](https://yamap.co.jp/)のAndroidアプリを作っている**社畜**エンジニアです。
 最近は、Docker, TensorFlow, Angular 2などやっていてiOS全然できてない（泣）
 
 - Twitter: @gupuru
 - GitHub: gupuru
+
+---
+
+# [fit] セフリは、どんな企業かと言うと…社長が犬です！
+
+![inline](img/kaizyuu.jpg)
 
 ---
 
@@ -36,7 +28,11 @@
 
 ---
 
-# おまけのお話
+# [fit] あとは、おまけなので、適当に聞いて`(*´ω｀*)`
+
+---
+
+# おまけの内容
 
 - SVGって何？
 - iOSのSVG
@@ -108,21 +104,22 @@
 
 - ベクターデータ
 - XML
+- アニメーション
 - 拡大縮小しても荒くならない
 
 ---
 
 ### SVGは、なんで拡大縮小しても荒くならないの？？
 
-- 点の座標位置や点同士を結ぶ線を計算し、画像の拡大や縮小も画質を演算して表示しているから。
+- 点の座標位置や点同士を結ぶ線を計算し、さらに画像の拡大や縮小も画質を計算して表示しているから。
 - ちなみに、ベクターデータが最も利用されているは、フォント（アウトラインフォント）だそうです。
-- 詳しくは、**ググッてｗ**
+- もっと知りたくなっらら、**ググッてｗ**
 
 ---
 
 ## 拡大縮小しても荒くならないので...
 
-- svgの1ファイルだけ用意すれば、**解像度に応じた画像を用意する必要がない！**
+- SVGの1ファイルだけ用意すれば、**解像度に応じた画像を用意する必要がない！**
 - 今後、さらに解像度があがり@4x, xxxxxhdpiなどの対応が必要になった時も、**新しく画像を用意しないくていい!!**
 - アプリの容量も減らせる( *• ̀ω•́ )b
 
@@ -159,7 +156,7 @@ CocoaPodsで追加
 
 ---
 
-# [fit] Resources作って、そこにsvgをいれてねー
+# [fit] Resources作って、そこにSVGをいれてねー
 
 ![inline](img/ios_6.png)
 
@@ -168,14 +165,14 @@ CocoaPodsで追加
 # [fit] あとは、こんな感じにやればOK
 
 ```swift
-@IBOutlet weak var svgAndroidImageView: UIImageView!
+@IBOutlet weak var svgWindowsImageView: UIImageView!
 
 override func viewDidLoad() {
 	super.viewDidLoad()
 	
-	let svgImage = SVGKImage(named: "android")
-	svgImage?.size = svgAndroidImageView.bounds.size
-	svgAndroidImageView.image = svgImage?.uiImage
+	let svgImage = SVGKImage(named: "windows")
+	svgImage?.size = svgWindowsImageView.bounds.size
+	svgWindowsImageView.image = svgImage?.uiImage
 	
 }
 ```
@@ -196,7 +193,7 @@ override func viewDidLoad() {
 
 ---
 
-# [fit] Exportで、swiftファイル書き出して、プロジェクトに入れます。
+# [fit] Exportで、swiftファイル書き出して、プロジェクトに入れてー
 
 ![inline fit](img/ios_2.png)
 
@@ -208,25 +205,25 @@ override func viewDidLoad() {
 
 ---
 
-# [fit] コードで指定する場合は、こんな感じです。
+# [fit] コードで指定する場合は、こんな感じ
 
 ```swift
-	hogehoge.image = AndroidStyleKit.imageOfAndroid
+	hogehoge.image = WindowsStyleKit.imageOfWindows
 ```
 
 ![right fit](img/ios_4.png)
 
 ---
 
-# [fit] storyboard上でやる場合は、こんな感じです。
+# [fit] storyboardでやる場合は、こんな感じ
 
 ```swift
 import UIKit
 
 @IBDesignable
-class AndroidView: UIView {
+class WindowsView: UIView {
     override func draw(_ rect: CGRect) {
-        AndroidStyleKit.drawAndroid()
+        WindowsStyleKit.drawWindows()
     }
 }
 ```
@@ -235,23 +232,23 @@ class AndroidView: UIView {
 
 ---
 
-# SVG　アニメーションっぽいこと
+# [fit] SVGアニメーションっぽいこと
 
 ```swift
 
-@IBOutlet weak var leftOldWindowsView: OldWindowsView!
+@IBOutlet weak var windowsView: WindowsView!
 
-UIView.animate(withDuration: 1.0, delay: 0, options: .curveLinear, animations: {
-            self.leftOldWindowsView!.transform =
-                self.leftOldWindowsView!.transform.rotated(by: CGFloat(M_PI_2))
-            }, completion: { finished in
-                self.rotateLeftOldWindowsView()
-        })
+func rotateView() {
+	UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
+		self.windowsView!.transform =
+			self.windowsView!.transform.rotated(by: CGFloat(M_PI_2))
+		}, completion: { finished in
+			self.rotateView()
+	})
+}
 ```
 
-
 ![right fit](img/ios_animation.gif)
-
 
 ---
 
