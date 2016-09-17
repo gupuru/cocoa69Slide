@@ -256,7 +256,53 @@ func rotateView() {
 
 ---
 
-# gradleに、これを入れてください。
+## [fit] Android 5.0(Lollipop)より、ベクター画像が普通に使えます。
+## [fit] 5.0より下は、SupportLibraryを使うことで、表示が可能！
+
+```
+    <ImageView
+        android:id="@+id/hogehoge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_hogehoge_vector_24dp" />
+```
+
+---
+
+svgファイルをそのままでは使えないので`<vector>`に変換する必要があります。
+この辺は、Android Studioの**Vector Asset**を使えば、簡単にできます！
+
+![inline fit](img/android_studio_1.png)
+
+---
+
+# [fit] `Local...`を選んでもらって、svgファイルを指定します
+
+![inline fit](img/android_studio_2.png)
+
+---
+
+# [fit] ちゃんと読み込めると、こんな感じにプレビューが表示されます
+
+![inline fill fit](img/android_studio_3.png)
+
+---
+
+# [fit] そして、こんな感じに変換してくれます
+
+![inline fill fit](img/android_studio_4.png)
+
+---
+
+あ！ちなみに、**Vector Asset**には、こんな感じのアイコンも用意してくれているので、こっちを使うのもアリ！
+
+![inline fill fit](img/android_studio_5.png)
+
+---
+
+# 下準備
+
+### gradleに、これを入れてください
 
 
 ```
@@ -266,37 +312,6 @@ defaultConfig {
     ...
   }
 ```
-
----
-
-svgファイルはそのままでは使えないので`<vector>`に変換する必要があります。
-この辺は、Android Studioの**Vector Asset**を使えば、簡単にできます！
-
-![inline fit](img/android_studio_1.png)
-
----
-
-# `Local...`を選んでもらって...
-
-![inline fit](img/android_studio_2.png)
-
----
-
-# ちゃんと読み込めると、こんな感じにプレビューが表示されます。
-
-![inline fill fit](img/android_studio_3.png)
-
----
-
-# そして、こんな感じに変換してくれます。
-
-![inline fill fit](img/android_studio_4.png)
-
----
-
-あ！ちなみに、**Vector Asset**には、こんな感じのアイコンも用意してくれているので、こっちを使うのもアリ！
-
-![inline fill fit](img/android_studio_5.png)
 
 ---
 
@@ -310,6 +325,80 @@ svgファイルはそのままでは使えないので`<vector>`に変換する�
 ```
 
 ![right fit](img/android_sc.png)
+
+---
+
+# アニメーション
+
+**AnimatedVectorDrawable**を使うよ(^O^)／
+
+**画面撮るの忘れたｗｗ**
+
+---
+
+### vector
+
+```xml
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="44dp"
+    android:viewportHeight="44.0"
+    android:viewportWidth="20.0">
+
+    <group
+        android:name="apple">
+
+    <path
+        android:fillColor="#000"
+        android:pathData="M18.1,24.227c-0.106,...3,0.1272.658c-0.85z" />
+
+    </group>
+</vector>
+```
+
+---
+
+### animated-vector
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/apple" >
+    <target
+        android:name="apple"
+        android:animation="@anim/rotate" />
+
+</animated-vector>
+```
+
+---
+
+### objectAnimator
+
+```xml
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <objectAnimator
+        android:duration="6000"
+        android:propertyName="rotation"
+        android:valueFrom="0"
+        android:valueTo="360" />
+
+</set>
+```
+
+---
+
+### startで実行
+
+```java
+
+ImageView appleImageView = (ImageView) findViewById(R.id.image_apple);
+
+AnimatedVectorDrawable d = (AnimatedVectorDrawable) ContextCompat.getDrawable(this, R.drawable.rotete_apple);
+appleImageView.setImageDrawable(d);
+d.start();
+```
 
 ---
 
