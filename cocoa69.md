@@ -8,23 +8,20 @@
 
 **新見 晃平**
 
-福岡にある株式会社セフリという会社で、[YAMAP](https://yamap.co.jp/)のAndroidアプリを作っている**社畜**エンジニアです。
-最近は、Docker, TensorFlow, Angular 2などやっていてiOS全然できてない（泣）
+株式会社ヤマップという会社で、[YAMAP](https://yamap.co.jp/)のAndroidアプリなどを作っているエンジニアです。
 
 - Twitter: @gupuru
 - GitHub: gupuru
 
 ---
 
-# [fit] セフリは、どんな企業かと言うと…社長が犬です！
-
-![inline](img/kaizyuu.jpg)
+# [fit] ちなみに、ヤマップは、どんな企業かと言うと…
 
 ---
 
-# [fit] YAMAPダウンロードしてねー
+# 犬が社長です！
 
-![fill](img/ya.jpg)
+![inline](img/kaizyuu.jpg)
 
 ---
 
@@ -140,7 +137,7 @@
 # [fit] iOSでは、この辺を使うとSVGが使えます(･ω･)b
 
 - ライブラリ(SVGKit, SwiftSVG)
-- アプリ(PaintCode)
+- アプリ(PaintCode 3)
 
 ---
 
@@ -181,11 +178,11 @@ override func viewDidLoad() {
 
 ---
 
-# PaintCode
+# PaintCode 3
 
 - drawrectエディター
-- 11,409円(2016/9/15)
-- swift3.0に未対応(2016/9/15)
+- 12,532円(2017/1/20)
+- swift3.0対応！あと、Androidも！！もちろん、JavaScriptも！！！
 
 ---
 
@@ -193,15 +190,67 @@ override func viewDidLoad() {
 
 ---
 
-# [fit] Exportで、swiftファイル書き出して、プロジェクトに入れてー
+```swift
+//// Color Declarations
+let fillColor = UIColor(red: 0.139, green: 0.508, blue: 0.755, alpha: 1.000)
+let fillColor2 = UIColor(red: 0.951, green: 0.951, blue: 0.951, alpha: 1.000)
 
-![inline fit](img/ios_2.png)
+//// windows.svg Group
+//// Oval Drawing
+let ovalPath = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 512, height: 512))
+fillColor.setFill()
+ovalPath.fill()
+
+//// Bezier Drawing
+let bezierPath = UIBezierPath()
+bezierPath.move(to: CGPoint(x: 232, y: 246.52))
+bezierPath.addCurve(to: CGPoint(x: 232, y: 129.53), controlPoint1: CGPoint(x: 232, y: 207.52), controlPoint2: CGPoint(x: 232, y: 168.53))
+bezierPath.addCurve(to: CGPoint(x: 120, y: 148.48), controlPoint1: CGPoint(x: 192, y: 135.86), controlPoint2: CGPoint(x: 159.46, y: 142.16))
+bezierPath.addCurve(to: CGPoint(x: 120, y: 247.93), controlPoint1: CGPoint(x: 120, y: 188.26), controlPoint2: CGPoint(x: 120, y: 208.15))
+bezierPath.addCurve(to: CGPoint(x: 232, y: 246.52), controlPoint1: CGPoint(x: 159.46, y: 247.47), controlPoint2: CGPoint(x: 192, y: 246.98))
+bezierPath.close()
+fillColor2.setFill()
+bezierPath.fill()
+
+//// Bezier 2 Drawing
+let bezier2Path = UIBezierPath()
+bezier2Path.move(to: CGPoint(x: 248, y: 246.28))
+bezier2Path.addCurve(to: CGPoint(x: 376, y: 244.86), controlPoint1: CGPoint(x: 288, y: 245.8), controlPoint2: CGPoint(x: 336.54, y: 245.35))
+bezier2Path.addCurve(to: CGPoint(x: 376, y: 107.52), controlPoint1: CGPoint(x: 376, y: 199.08), controlPoint2: CGPoint(x: 376, y: 153.3))
+bezier2Path.addCurve(to: CGPoint(x: 248, y: 126.47), controlPoint1: CGPoint(x: 336.54, y: 113.84), controlPoint2: CGPoint(x: 288, y: 120.14))
+bezier2Path.addCurve(to: CGPoint(x: 248, y: 246.28), controlPoint1: CGPoint(x: 248, y: 166.41), controlPoint2: CGPoint(x: 248, y: 206.34))
+bezier2Path.close()
+fillColor2.setFill()
+bezier2Path.fill()
+
+//// Bezier 3 Drawing
+let bezier3Path = UIBezierPath()
+bezier3Path.move(to: CGPoint(x: 249.6, y: 265.72))
+bezier3Path.addCurve(to: CGPoint(x: 249.6, y: 385.54), controlPoint1: CGPoint(x: 249.58, y: 305.66), controlPoint2: CGPoint(x: 249.6, y: 345.6))
+bezier3Path.addCurve(to: CGPoint(x: 376, y: 404.48), controlPoint1: CGPoint(x: 289.06, y: 391.86), controlPoint2: CGPoint(x: 336.53, y: 398.16))
+bezier3Path.addCurve(to: CGPoint(x: 376, y: 267.14), controlPoint1: CGPoint(x: 376, y: 358.7), controlPoint2: CGPoint(x: 376, y: 312.91))
+bezier3Path.addCurve(to: CGPoint(x: 249.6, y: 265.72), controlPoint1: CGPoint(x: 336.54, y: 266.67), controlPoint2: CGPoint(x: 289.07, y: 266.19))
+bezier3Path.close()
+fillColor2.setFill()
+bezier3Path.fill()
+
+//// Bezier 4 Drawing
+let bezier4Path = UIBezierPath()
+bezier4Path.move(to: CGPoint(x: 232, y: 265.48))
+bezier4Path.addCurve(to: CGPoint(x: 120, y: 264.06), controlPoint1: CGPoint(x: 192, y: 265.01), controlPoint2: CGPoint(x: 159.46, y: 264.54))
+bezier4Path.addCurve(to: CGPoint(x: 120, y: 363.52), controlPoint1: CGPoint(x: 120, y: 303.85), controlPoint2: CGPoint(x: 120, y: 323.74))
+bezier4Path.addCurve(to: CGPoint(x: 232, y: 382.46), controlPoint1: CGPoint(x: 159.46, y: 369.85), controlPoint2: CGPoint(x: 192, y: 376.14))
+bezier4Path.addCurve(to: CGPoint(x: 232, y: 265.48), controlPoint1: CGPoint(x: 232, y: 343.47), controlPoint2: CGPoint(x: 232, y: 304.48))
+bezier4Path.close()
+fillColor2.setFill()
+bezier4Path.fill()
+```
 
 ---
 
-# [fit] いろいろエラーがでるので、修正してね(swift3.0未対応のため)
+# [fit] Exportで、swiftファイル書き出して、プロジェクトに入れてー
 
-![inline fit](img/ios_3.png)
+![inline fit](img/ios_2.png)
 
 ---
 
@@ -253,6 +302,12 @@ func rotateView() {
 ---
 
 # [fit] AndroidのSVG対応
+
+---
+
+# Androidで、PaintCode 3を使う
+
+## http://qiita.com/gupuru/items/38d29cee66fc956bd30a
 
 ---
 
@@ -414,15 +469,11 @@ d.start();
 
 ---
 
-# でも、Windowsは完全に負けてます（笑）
-
----
-
 #　最後に言い忘れたことが...
 
 ---
 
-#　社長の名前は、ハナちゃんです（笑）
+#[fit] 社長の名前は、ハナちゃんです（笑）
 
 ---
 
